@@ -1,0 +1,658 @@
+﻿<!DOCTYPE html>
+<html lang="hi" class="select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGDCollege-BGS Student Help - Admission Portal</title>
+    
+    <!-- University Favicon Icon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/FutureWithShivamBR34/LNMU-Notice/0b4ae08cec3a966e99eeeee1dadd4802a5cd7f73/20241202_162350.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- SweetAlert2 (Modern Popups) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Anti-Selection & Client-Side Protection CSS */
+        *, *::before, *::after {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        img {
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            pointer-events: auto;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .font-english-heading { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
+        .font-hindi-university { font-family: 'Noto Serif Devanagari', serif; letter-spacing: 0.01em; }
+
+        /* Darker Navy Blue Theme */
+        .hero-bg { background: linear-gradient(135deg, #091424, #0f2b48, #172554); }
+        .card { box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12); }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col justify-between relative" 
+      oncontextmenu="return false;" 
+      ondragstart="return false;" 
+      onselectstart="return false;">
+
+<div>
+    <!-- Top Banner Header -->
+    <div class="hero-bg text-white pt-8 pb-12 border-b border-blue-950">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col items-center text-center gap-3">
+            
+            <div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl p-1 flex items-center justify-center shadow-2xl border-4 border-blue-200/50 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img src="https://raw.githubusercontent.com/FutureWithShivamBR34/College-LOGO-/9ab9538ee10bb6cff1e9ba66632632ed5c64f32d/20241130_133257.png" 
+                     alt="GD Logo" 
+                     class="w-full h-full object-contain scale-125 pointer-events-none"
+                     draggable="false">
+            </div>
+
+            <h1 class="font-english-heading text-3xl md:text-4xl font-extrabold tracking-tight mt-2 drop-shadow-sm">
+                GD COLLEGE BEGUSARAI-BIHAR
+            </h1>
+
+            <p class="font-hindi-university text-blue-100 text-xl md:text-2xl font-bold tracking-wide">
+                गणेश दत्त महाविद्यालय, बेगूसराय, बिहार
+            </p>
+
+            <div class="mt-1">
+                <span class="px-5 py-1.5 bg-blue-900/60 rounded-full text-xs md:text-sm font-medium border border-blue-400/30 backdrop-blur-sm text-blue-100">
+                    MyGDCollege-BGS
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Navigation & Content Container -->
+    <div class="max-w-4xl mx-auto px-4 md:px-6 -mt-8 mb-12">
+
+        <!-- Navigation Tabs Menu -->
+        <div class="bg-white/95 backdrop-blur-md p-2 rounded-2xl shadow-lg border border-slate-200/90 mb-6 flex items-center justify-center gap-3">
+            <button onclick="switchTab('admission-form')" id="tab-admission-form" class="tab-btn flex-1 max-w-xs py-3 px-6 rounded-xl text-xs md:text-sm font-bold transition-all text-white bg-blue-900 shadow-md flex items-center justify-center gap-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Admission Form</span>
+            </button>
+            
+            <button onclick="switchTab('fee-structure')" id="tab-fee-structure" class="tab-btn flex-1 max-w-xs py-3 px-6 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-slate-100 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Admission Fees</span>
+            </button>
+        </div>
+
+        <!-- MAIN TAB CONTENT AREA -->
+        <div class="bg-white rounded-3xl shadow-2xl card overflow-hidden border border-slate-200">
+
+            <!-- TAB 1: ADMISSION FORM CONTENT -->
+            <div id="content-admission-form" class="tab-content">
+                <div class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white p-8 md:p-10 text-center relative overflow-hidden">
+                    
+                    <!-- Blinking Date Extended Badge -->
+                    <div id="extendedBadge" class="hidden inline-flex items-center gap-2 px-4 py-1.5 bg-amber-400 text-blue-950 rounded-full text-xs md:text-sm font-extrabold uppercase tracking-wide shadow-lg mb-3 animate-pulse">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Date Extended (नामांकन तिथि विस्तारित)</span>
+                    </div>
+
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">UG Semester 5 Admission Form</h2>
+                    <p class="text-xl md:text-2xl text-blue-100 font-medium">Session 2024–28 / Regular & Back</p>
+                    <p class="mt-3 text-blue-200 text-base md:text-lg font-light">(B.A. / B.Sc. / B.Com.) – Semester 5</p>
+                </div>
+
+                <div class="p-6 md:p-10">
+
+                    <!-- Schedule & Hardcopy Submission Details Grid -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        
+                        <!-- Admission Apply Schedule Card -->
+                        <div class="bg-blue-50/80 border border-blue-200 p-6 rounded-3xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-blue-950 mb-4 text-base md:text-lg flex items-center justify-between">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-calendar-days text-blue-800"></i> Admission Apply Schedule
+                                    </span>
+                                    <span id="revisedBadge" class="hidden text-xs bg-blue-200 text-blue-950 px-2 py-0.5 rounded-md font-bold">Revised</span>
+                                </h4>
+                                <div class="space-y-3 text-sm text-slate-700">
+                                    <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+                                        <span class="font-medium text-slate-900">Online Apply Date:</span>
+                                        <span id="displayNormalDate" class="text-right font-semibold text-blue-950">01 Oct - 15 Oct 2026</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+                                        <span class="font-medium text-slate-900">Late Fee Apply:</span>
+                                        <span id="displayLateDate" class="text-right font-semibold text-blue-950">16 - 20 Oct 2026</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+                                        <span class="font-medium text-slate-900">Data Correction:</span>
+                                        <span id="displayCorrectionDate" class="text-right font-semibold text-blue-950">21 - 22 Oct 2026</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-1 font-semibold text-base">
+                                        <span class="text-slate-900">Class Commencement:</span>
+                                        <span id="displayExamDate" class="text-blue-800 font-bold">25 Oct 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hardcopy Counter Details Card -->
+                        <div class="bg-slate-50 border border-slate-300 p-6 rounded-3xl flex flex-col justify-between text-center">
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-3 text-base md:text-lg flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-desktop text-blue-800"></i> Hardcopy Counter Details
+                                </h4>
+
+                                <!-- Hardcopy Submission Date -->
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 bg-blue-100/90 border border-blue-200 p-2.5 rounded-xl mb-3 text-sm">
+                                    <span class="font-bold text-blue-950 flex items-center justify-center gap-1.5">
+                                        <i class="fa-regular fa-calendar-check text-blue-800"></i> Hardcopy Submission:
+                                    </span>
+                                    <span id="displayHardcopyDate">
+                                        <strong class="text-blue-900 font-bold">03 Oct - 25 Oct 2026</strong>
+                                    </span>
+                                </div>
+
+                                <!-- Counter Numbers Allocation -->
+                                <div class="space-y-2.5 text-sm text-slate-800">
+                                    <div class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm text-center">
+                                        <span class="font-semibold text-slate-800 flex items-center justify-center gap-1.5">
+                                            <i class="fa-solid fa-book-open text-blue-800"></i>
+                                            <span>Faculty of Arts (B.A.):</span>
+                                        </span>
+                                        <span class="px-2.5 py-0.5 bg-blue-100 text-blue-900 rounded-md font-bold text-xs">Counter No. 02 & 03</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm text-center">
+                                        <span class="font-semibold text-slate-800 flex items-center justify-center gap-1.5">
+                                            <i class="fa-solid fa-flask text-teal-700"></i>
+                                            <span>Faculty of Science (B.Sc.):</span>
+                                        </span>
+                                        <span class="px-2.5 py-0.5 bg-teal-100 text-teal-900 rounded-md font-bold text-xs">Counter No. 04</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm text-center">
+                                        <span class="font-semibold text-slate-800 flex items-center justify-center gap-1.5">
+                                            <i class="fa-solid fa-chart-line text-indigo-700"></i>
+                                            <span>Faculty of Commerce (B.Com.):</span>
+                                        </span>
+                                        <span class="px-2.5 py-0.5 bg-indigo-100 text-indigo-900 rounded-md font-bold text-xs">Counter No. 05</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-3 italic text-center font-hindi-university">
+                                *काउंटर पर केवल कार्य दिवसों में 10:30 AM से 03:30 PM तक नामांकन फॉर्म एवं रसीद जमा होगी।
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- TWO INTERACTIVE DOCUMENT CARDS (Modern SweetAlert Popup on Click) -->
+                    <div class="mb-8">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            
+                            <!-- Card 1: Online Apply Credentials & Documents -->
+                            <div onclick="openApplyDocsModal()" 
+                                 class="group cursor-pointer bg-gradient-to-br from-blue-50/90 to-white border border-blue-200/90 hover:border-blue-700 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-100 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500"></div>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-blue-900 text-white flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-100 px-2.5 py-0.5 rounded-full">Stage 1: Apply</span>
+                                        <h4 class="font-bold text-slate-900 text-base md:text-lg">ऑनलाइन फॉर्म भरने हेतु दस्तावेज़</h4>
+                                    </div>
+                                </div>
+                                <p class="text-xs md:text-sm text-slate-600 font-hindi-university line-clamp-2">
+                                    ऑनलाइन पोर्टल पर फॉर्म भरने एवं लॉगिन के लिए आवश्यक क्रेडेंशियल्स व दस्तावेज़ सूची देखने हेतु क्लिक करें।
+                                </p>
+                                <div class="mt-4 flex items-center gap-2 text-xs font-bold text-blue-900 group-hover:translate-x-1 transition-transform">
+                                    <span>पूरी सूची देखें (View Credentials)</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Counter Verification Documents -->
+                            <div onclick="openCounterDocsModal()" 
+                                 class="group cursor-pointer bg-gradient-to-br from-slate-50 to-white border border-slate-300 hover:border-slate-800 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-slate-200 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500"></div>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-xl shadow-md group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-folder-tree"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold text-slate-700 uppercase tracking-wider bg-slate-200 px-2.5 py-0.5 rounded-full">Stage 2: Counter</span>
+                                        <h4 class="font-bold text-slate-900 text-base md:text-lg">काउंटर सत्यापन हेतु आवश्यक दस्तावेज़</h4>
+                                    </div>
+                                </div>
+                                <p class="text-xs md:text-sm text-slate-600 font-hindi-university line-clamp-2">
+                                    कॉलेज काउंटर पर हार्डकॉपी जमा और वेरिफिकेशन हेतु लगने वाले सभी अनिवार्य पेपरों की सूची।
+                                </p>
+                                <div class="mt-4 flex items-center gap-2 text-xs font-bold text-slate-900 group-hover:translate-x-1 transition-transform">
+                                    <span>पूरी सूची देखें (View Counter List)</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+ <!-- IMPORTANT INSTRUCTIONS ACCORDION -->
+                    <div class="mb-10 bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                        <button onclick="toggleInstructions()" class="w-full p-5 text-left bg-gradient-to-r from-blue-950 to-slate-900 text-white font-bold flex items-center justify-between cursor-pointer hover:from-blue-900 hover:to-slate-800 transition-all">
+                            <span class="flex items-center gap-3 text-base md:text-lg">
+                                <i class="fa-solid fa-circle-exclamation text-amber-300"></i>
+                                <span>नामांकन से संबंधित महत्वपूर्ण निर्देश (Important Admission Instructions)</span>
+                            </span>
+                            <i id="instructionIcon" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+
+                        <div id="instructionContent" class="hidden p-6 md:p-8 space-y-4 text-slate-700 text-sm md:text-base font-hindi-university bg-white border-t border-slate-200">
+                            <div class="flex items-start gap-3">
+                                <span class="bg-blue-100 text-blue-900 font-bold px-2.5 py-0.5 rounded-full text-xs mt-1">1</span>
+                                <p><strong>नामांकन फॉर्म भरने की अंतिम तिथि:</strong> छात्र-छात्राएं निर्धारित तिथि (<span id="instructionLastDate">15 अक्टूबर 2026</span>) तक अपना 5th सेमेस्टर नामांकन फॉर्म एवं शुल्क अवश्य जमा कर दें।</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="bg-blue-100 text-blue-900 font-bold px-2.5 py-0.5 rounded-full text-xs mt-1">2</span>
+                                <p><strong>पात्रता (Eligibility):</strong> 5th सेमेस्टर में नामांकन हेतु पूर्ववर्ती सेमेस्टर्स के नियमानुसार उत्तीर्ण/प्रमोटेड होना आवश्यक है।</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="bg-blue-100 text-blue-900 font-bold px-2.5 py-0.5 rounded-full text-xs mt-1">3</span>
+                                <p><strong>हार्ड कॉपी सत्यापन अनिवार्य:</strong> केवल ऑनलाइन फीस जमा करने से नामांकन मान्य नहीं होगा। भुगतान रसीद और दस्तावेज कॉलेज काउंटर पर (<span id="instructionHardcopyDate">25 अक्टूबर 2026</span>) तक जमा करना अनिवार्य है।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TWO MAIN ACTION BUTTONS: ADMISSION FORM & VIEW OFFICIAL NOTICE -->
+                    <div class="mb-4">
+                        <h3 class="text-center font-bold text-xl mb-6 text-slate-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-link text-blue-900"></i> Important Quick Links & Actions
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- BUTTON 1: ADMISSION FORM APPLY BUTTON -->
+                            <a id="btnAdmissionApply" href="https://lnmuniversity.com" target="_blank" rel="noopener noreferrer"
+                               class="group bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 text-white p-7 rounded-3xl hover:from-blue-800 hover:to-slate-900 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block border border-blue-900 w-full cursor-pointer">
+                                <div class="w-14 h-14 mx-auto mb-3 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-white/20 transition-all">
+                                    <i class="fa-solid fa-laptop-file text-2xl text-blue-200"></i>
+                                </div>
+                                <div class="text-2xl md:text-3xl font-extrabold mb-1 tracking-wide">ADMISSION APPLY</div>
+                                <div class="text-blue-200 text-sm md:text-base font-medium">कॉलेज 5th सेमेस्टर नामांकन फॉर्म लिंक</div>
+                                <div class="mt-4 inline-flex items-center gap-2 bg-blue-800/80 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">
+                                    <span>Click to Fill Form</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </div>
+                            </a>
+
+                            <!-- BUTTON 2: VIEW OFFICIAL NOTICE BUTTON (JPG / PDF FORMAT) -->
+                            <a id="btnOfficialNotice" href="https://lnmuniversity.com/lnmuexama_2529/Content/assets/pdf/Sem_4th.jpeg" target="_blank" rel="noopener noreferrer"
+                               class="group bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 text-white p-7 rounded-3xl hover:from-slate-800 hover:to-blue-900 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl text-center block border border-slate-700 w-full cursor-pointer">
+                                <div class="w-14 h-14 mx-auto mb-3 bg-amber-400/20 rounded-2xl flex items-center justify-center group-hover:bg-amber-400/30 transition-all">
+                                    <i class="fa-solid fa-file-image text-2xl text-amber-300"></i>
+                                </div>
+                                <div class="text-2xl md:text-3xl font-extrabold mb-1 tracking-wide">OFFICIAL NOTICE</div>
+                                <div class="text-slate-300 text-sm md:text-base font-medium">कॉलेज आधिकारिक सूचना (JPG/PDF)</div>
+                                <div class="mt-4 inline-flex items-center gap-2 bg-amber-500/20 text-amber-200 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase border border-amber-400/30">
+                                    <span>View Notice Image</span>
+                                    <i class="fa-solid fa-eye text-xs"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 2: FEES DETAILS CONTENT -->
+            <div id="content-fee-structure" class="tab-content hidden p-6 md:p-10">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-1">
+                        UG 5th Semester Admission Fee Structure
+                    </h3>
+                    <p class="text-slate-500 text-sm md:text-base">
+                        विभिन्न संकायों (B.A. / B.Sc. / B.Com.) एवं श्रेणियों के लिए निर्धारित नामांकन शुल्क विवरण
+                    </p>
+                </div>
+
+                <!-- Fee Table -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm mb-8">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-blue-950 text-white font-semibold">
+                                <th class="p-4">संकाय / Course Stream</th>
+                                <th class="p-4 text-center">Admission Fee</th>
+                                <th class="p-4 text-center">Late Fee (+₹100)</th>
+                                <th class="p-4 text-center">Casual / Re-admission</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 bg-white">
+                            <tr class="hover:bg-blue-50/50 transition-colors">
+                                <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-book-open text-blue-900"></i>
+                                    <span>B.A. (Arts Non-Practical)</span>
+                                </td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,250/-</td>
+                                <td class="p-4 text-center font-bold text-blue-900">₹1,350/-</td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,500/-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/50 transition-colors">
+                                <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-palette text-blue-900"></i>
+                                    <span>B.A. (With Practical Subject)</span>
+                                </td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,450/-</td>
+                                <td class="p-4 text-center font-bold text-blue-900">₹1,550/-</td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,700/-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/50 transition-colors">
+                                <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-flask-vial text-teal-800"></i>
+                                    <span>B.Sc. (Science Subjects)</span>
+                                </td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,550/-</td>
+                                <td class="p-4 text-center font-bold text-blue-900">₹1,650/-</td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,800/-</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50/50 transition-colors">
+                                <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-line text-blue-900"></i>
+                                    <span>B.Com. (Commerce)</span>
+                                </td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,250/-</td>
+                                <td class="p-4 text-center font-bold text-blue-900">₹1,350/-</td>
+                                <td class="p-4 text-center font-semibold text-slate-700">₹1,500/-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Fee Notes -->
+                <div class="grid md:grid-cols-2 gap-4 text-sm font-hindi-university">
+                    <div class="bg-amber-50 border border-amber-200/80 p-5 rounded-2xl">
+                        <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                            विलंब शुल्क नियम (Late Fee Policy)
+                        </h4>
+                        <p class="text-amber-950 text-xs md:text-sm leading-relaxed">
+                            निर्धारित तिथि के उपरांत नामांकन लेने पर छात्र को ₹100 अतिरिक्त विलंब शुल्क देना होगा।
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 border border-blue-200 p-5 rounded-2xl">
+                        <h4 class="font-bold text-blue-950 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-credit-card text-blue-800"></i>
+                            शुल्क भुगतान माध्यम (Payment Method)
+                        </h4>
+                        <p class="text-blue-950 text-xs md:text-sm leading-relaxed">
+                            नामांकन शुल्क ऑनलाइन नेट बैंकिंग, UPI या डेबिट कार्ड के माध्यम से जमा कर ई-रसीद अवश्य सुरक्षित रख लें।
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-900 mt-auto">
+    <div class="max-w-5xl mx-auto px-6 text-center space-y-4">
+        <div>
+            <a href="https://www.lnmu.ac.in" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white font-medium inline-flex items-center gap-2 text-sm transition-colors">
+                <i class="fa-solid fa-building-columns text-blue-400"></i>
+                <span>Visit Official LNMU Portal (www.lnmu.ac.in)</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+        </div>
+        <hr class="border-slate-800 max-w-xs mx-auto">
+        <p class="text-xs text-slate-500 flex items-center justify-center gap-1">
+            <span>Design by</span>
+            <span class="text-blue-400 font-semibold">FutureWithShivamBR34</span>
+        </p>
+    </div>
+</footer>
+
+<!-- SCRIPTS & CONFIGURATION -->
+<script>
+    /* ==========================================================================
+       CENTRAL URL & DATE CONFIGURATION (5th Semester Admission)
+       ========================================================================== */
+    const PORTAL_CONFIG = {
+        // 1. Apna Admission Form Link yahan dalein:
+        admissionApplyUrl: "https://lnmuniversity.com",
+
+        // 2. Apna Official Notice ka JPG / Image / PDF Link yahan dalein:
+        noticeJpgUrl: "https://lnmuniversity.com/lnmuexama_2529/Content/assets/pdf/Sem_4th.jpeg",
+
+        isExtended: false, // Date badhne par true karein
+        
+        // सामान्य तारीखें (Normal Dates)
+        normalDates: {
+            normalFee: "01 Oct - 15 Oct 2026",
+            lateFee: "16 - 20 Oct 2026",
+            correction: "21 - 22 Oct 2026",
+            hardcopy: "03 Oct - 25 Oct 2026",
+            proposedExam: "25 Oct 2026",
+            instructionLastDateText: "15 अक्टूबर 2026",
+            instructionHardcopyText: "25 अक्टूबर 2026"
+        },
+
+        // विस्तारित तारीखें (Extended Dates)
+        extendedDates: {
+            normalFee: `<del class="text-gray-400 mr-1.5 font-normal">15 Oct</del><strong class="text-blue-900 font-bold bg-blue-100 px-1.5 py-0.5 rounded">25 Oct 2026</strong>`,
+            lateFee: `<del class="text-gray-400 mr-1.5 font-normal">20 Oct</del><strong class="text-blue-900 font-bold bg-blue-100 px-1.5 py-0.5 rounded">26 - 30 Oct 2026</strong>`,
+            correction: `<del class="text-gray-400 mr-1.5 font-normal">22 Oct</del><strong class="text-blue-900 font-bold bg-blue-100 px-1.5 py-0.5 rounded">31 Oct 2026</strong>`,
+            hardcopy: `<del class="text-gray-400 font-normal mr-1.5">25 Oct</del><strong class="text-blue-900 font-bold">Extended till 05 Nov 2026</strong>`,
+            proposedExam: "To be notified (शीघ्र सूचित होगी)",
+            instructionLastDateText: `<del class="text-gray-400">15 अक्टूबर</del> <strong>25 अक्टूबर 2026</strong>`,
+            instructionHardcopyText: `<del class="text-gray-400">25 अक्टूबर</del> <strong>05 नवंबर 2026</strong>`
+        }
+    };
+
+    // Auto Link & Date Update on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+        const dates = PORTAL_CONFIG.isExtended 
+            ? PORTAL_CONFIG.extendedDates 
+            : PORTAL_CONFIG.normalDates;
+
+        // Button Links Set Karna
+        document.getElementById('btnAdmissionApply').href = PORTAL_CONFIG.admissionApplyUrl;
+        document.getElementById('btnOfficialNotice').href = PORTAL_CONFIG.noticeJpgUrl;
+
+        // Dates Set Karna
+        document.getElementById('displayNormalDate').innerHTML = dates.normalFee;
+        document.getElementById('displayLateDate').innerHTML = dates.lateFee;
+        document.getElementById('displayCorrectionDate').innerHTML = dates.correction;
+        document.getElementById('displayExamDate').innerHTML = dates.proposedExam;
+        document.getElementById('displayHardcopyDate').innerHTML = dates.hardcopy;
+        document.getElementById('instructionLastDate').innerHTML = dates.instructionLastDateText;
+        document.getElementById('instructionHardcopyDate').innerHTML = dates.instructionHardcopyText;
+
+        if (PORTAL_CONFIG.isExtended) {
+            document.getElementById('extendedBadge').classList.remove('hidden');
+            document.getElementById('revisedBadge').classList.remove('hidden');
+        }
+    });
+    
+    // Tab Switching Functionality
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.className = "tab-btn flex-1 max-w-xs py-3 px-6 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-slate-100 flex items-center justify-center gap-2";
+        });
+
+        const activeContent = document.getElementById('content-' + tabId);
+        if (activeContent) {
+            activeContent.classList.remove('hidden');
+        }
+
+        const activeTabBtn = document.getElementById('tab-' + tabId);
+        if (activeTabBtn) {
+            activeTabBtn.className = "tab-btn flex-1 max-w-xs py-3 px-6 rounded-xl text-xs md:text-sm font-bold transition-all text-white bg-blue-900 shadow-md flex items-center justify-center gap-2";
+        }
+    }
+
+    // Accordion Toggle
+    function toggleInstructions() {
+        const content = document.getElementById('instructionContent');
+        const icon = document.getElementById('instructionIcon');
+        
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            content.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // ==========================================================================
+    // MODERN SWEETALERT POPUP FUNCTIONS (Stay open until Close button clicked)
+    // ==========================================================================
+    
+    // Popup 1: Online Apply Credentials & Documents
+    function openApplyDocsModal() {
+        Swal.fire({
+            title: '<div class="text-xl md:text-2xl font-bold text-blue-950 flex items-center justify-center gap-2 pt-2"><i class="fa-solid fa-laptop-file text-blue-800"></i> ऑनलाइन आवेदन हेतु आवश्यक क्रेडेंशियल्स & दस्तावेज़</div>',
+            html: `
+                <div class="text-left font-hindi-university space-y-3 py-2 text-slate-700 text-sm md:text-base">
+                    <p class="text-xs text-amber-800 bg-amber-50 p-2.5 rounded-xl border border-amber-200 font-semibold mb-2">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i> फॉर्म भरने से पहले नीचे दिए गए सभी विवरण एवं फाइलें तैयार रखें:
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>University Unique form ID & Valid Mob No.:</strong> (सत्‍यापन एवं लॉगिन हेतु)</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>Aadhar No:</strong> (12 अंकों )</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>Passport size Photo & Sign.:</strong> (हालिया रंगीन फोटो एवं स्कैन हस्ताक्षर)</div>
+                        </div>
+                            <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>4th Sem. Admit Card (Invigilator Signed):</strong> (4th सेमेस्‍टर का एडमिट कार्ड जिसमें वीक्षक ने हस्‍ताक्षर हुए हैं)</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>सक्रिय मोबाइल नंबर एवं ईमेल आईडी:</strong> (OTP हेतु)</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                            <div><strong>ऑनलाइन भुगतान माध्यम:</strong> (UPI / Net Banking / Debit Card नामांकन शुल्क हेतु)</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            showCloseButton: true,
+            showConfirmButton: true,
+            confirmButtonText: '<i class="fa-solid fa-check mr-1"></i> ठीक है, समझ गया (Close)',
+            confirmButtonColor: '#1e3a8a',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            customClass: {
+                popup: 'rounded-3xl border border-slate-200 shadow-2xl p-4',
+                confirmButton: 'rounded-xl px-6 py-2.5 font-bold shadow-md'
+            }
+        });
+    }
+
+    // Popup 2: Counter Verification Documents
+    function openCounterDocsModal() {
+        Swal.fire({
+            title: '<div class="text-xl md:text-2xl font-bold text-slate-900 flex items-center justify-center gap-2 pt-2"><i class="fa-solid fa-folder-closed text-slate-800"></i> कॉलेज काउंटर सत्यापन हेतु आवश्यक दस्तावेज़</div>',
+            html: `
+                <div class="text-left font-hindi-university space-y-3 py-2 text-slate-700 text-sm md:text-base">
+                    <p class="text-xs text-blue-900 bg-blue-50 p-2.5 rounded-xl border border-blue-200 font-semibold mb-2">
+                        <i class="fa-solid fa-bell mr-1"></i> फॉर्म सबमिट करने के बाद इन सभी कागजातों की  छायाप्रति (Photo Copies/Xerox)काउंटर पर जमा करें:
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                            <div><strong>5th Sem ऑनलाइन एडमिशन फॉर्म:</strong>1</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                            <div><strong>पूर्ववर्ती सेमेस्टर (Sem 1 से 4) के एडमिट कार्ड / अंकपत्र:</strong> छायाप्रति</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                            <div><strong>विश्वविद्यालय पंजीयन पर्ची (Registration Slip):</strong> छायाप्रति</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                            <div><strong>ABC ID Card / APAAR Card:</strong> (DigiLocker प्रिंटआउट)</div>
+                        </div>
+                        <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                            <div><strong>जाति एवं आय प्रमाण पत्र:</strong> SC/ST/BC/EWS वर्ग के छात्रों हेतु (यदि लागू हो)</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            showCloseButton: true,
+            showConfirmButton: true,
+            confirmButtonText: '<i class="fa-solid fa-check mr-1"></i> ठीक है, समझ गया (Close)',
+            confirmButtonColor: '#0f172a',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            customClass: {
+                popup: 'rounded-3xl border border-slate-200 shadow-2xl p-4',
+                confirmButton: 'rounded-xl px-6 py-2.5 font-bold shadow-md'
+            }
+        });
+    }
+
+    // Security Scripts
+    document.addEventListener('copy', (e) => {
+        e.preventDefault();
+        const fakeText = "⚠️ [Protected Source] yeh code LNMU Student Portal ka secure content hai.";
+        if (e.clipboardData) {
+            e.clipboardData.setData('text/plain', fakeText);
+        }
+    });
+
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('keydown', (e) => {
+        if (
+            e.keyCode === 123 || 
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 80))
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
+</body>
+</html>
