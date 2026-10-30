@@ -359,37 +359,67 @@
                                 <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
                                     <i class="fa-solid fa-palette text-blue-900"></i>
                                     <span>B.A. (With Practical Subject)</span>
-                                </td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,450/-</td>
-                                <td class="p-4 text-center font-bold text-blue-900">₹1,550/-</td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,700/-</td>
+            <!-- TAB 2: FEES DETAILS CONTENT -->
+            <div id="content-fee-structure" class="tab-content hidden p-6 md:p-10">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-1">
+                        UG Semester-IV Admission Fee Structure
+                    </h3>
+                    <p class="text-slate-500 text-sm md:text-base">
+                        Science, Arts एवं Commerce संकाय हेतु निर्धारित नामांकन शुल्क विवरण
+                    </p>
+                </div>
+
+                <!-- Fee Table -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm mb-8">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-blue-950 text-white font-semibold">
+                                <th class="p-4">श्रेणी / Category</th>
+                                <th class="p-4 text-center">संकाय / Stream</th>
+                                <th class="p-4 text-center">सामान्य शुल्क (Non-Practical)</th>
+                                <th class="p-4 text-center">प्रैक्टिकल शुल्क (Practical Sub.)</th>
                             </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 bg-white">
+                            <!-- Male (GEN/BC/EWS) -->
                             <tr class="hover:bg-blue-50/50 transition-colors">
                                 <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
-                                    <i class="fa-solid fa-flask-vial text-teal-800"></i>
-                                    <span>B.Sc. (Non Practical)</span>
+                                    <i class="fa-solid fa-user text-blue-900"></i>
+                                    <span>Male (GEN / BC / EWS)</span>
                                 </td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,550/-</td>
-                                <td class="p-4 text-center font-bold text-blue-900">₹1,650/-</td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,800/-</td>
+                                <td class="p-4 text-center text-slate-600 font-medium">Science / Arts / Commerce</td>
+                                <td class="p-4 text-center font-bold text-blue-950 text-base">₹2,025/-</td>
+                                <td class="p-4 text-center font-semibold text-emerald-700 bg-emerald-50/40">+ ₹600/- अतिरिक्त</td>
                             </tr>
+                            
+                            <!-- Male (EBC) -->
                             <tr class="hover:bg-blue-50/50 transition-colors">
                                 <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
-                                    <i class="fa-solid fa-flask-vial text-teal-800"></i>
-                                    <span>B.Sc. (With Practical)</span>
+                                    <i class="fa-solid fa-user-tag text-teal-800"></i>
+                                    <span>Male (EBC)</span>
                                 </td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹2,000/-</td>
-                                <td class="p-4 text-center font-bold text-blue-900">₹--/-</td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,800/-</td>
+                                <td class="p-4 text-center text-slate-600 font-medium">Science / Arts / Commerce</td>
+                                <td class="p-4 text-center font-bold text-blue-950 text-base">₹1,425/-</td>
+                                <td class="p-4 text-center font-semibold text-emerald-700 bg-emerald-50/40">+ ₹600/- अतिरिक्त</td>
                             </tr>
-                            <tr class="hover:bg-blue-50/50 transition-colors">
+
+                            <!-- Male (SC/ST) / Female (All) -->
+                            <tr class="hover:bg-blue-50/50 transition-colors bg-slate-50/50">
                                 <td class="p-4 font-bold text-slate-800 flex items-center gap-2">
-                                    <i class="fa-solid fa-chart-line text-blue-900"></i>
-                                    <span>B.Com. (Commerce)</span>
+                                    <i class="fa-solid fa-users text-indigo-700"></i>
+                                    <span>Male (SC/ST) / Female (All)</span>
                                 </td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,250/-</td>
-                                <td class="p-4 text-center font-bold text-blue-900">₹1,350/-</td>
-                                <td class="p-4 text-center font-semibold text-slate-700">₹1,500/-</td>
+                                <td class="p-4 text-center text-slate-600 font-medium">Science / Arts / Commerce</td>
+                                <td class="p-4 text-center font-bold text-emerald-600 text-base">Nil (शून्य)</td>
+                                <td class="p-4 text-center text-slate-600 font-medium">
+                                    <span class="inline-block px-2.5 py-1 bg-amber-100 text-amber-900 rounded-lg text-xs font-semibold">
+                                        Extra Charges (बाद में जोड़ा जाएगा)
+                                    </span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -400,10 +430,10 @@
                     <div class="bg-amber-50 border border-amber-200/80 p-5 rounded-2xl">
                         <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
-                            विलंब शुल्क नियम (Late Fee Policy)
+                            प्रायोगिक विषय शुल्क (Practical Subject Fee)
                         </h4>
                         <p class="text-amber-950 text-xs md:text-sm leading-relaxed">
-                            निर्धारित तिथि के उपरांत नामांकन लेने पर छात्र को ₹100 अतिरिक्त विलंब शुल्क देना होगा।
+                            Practical Subject वाले विद्यार्थियों को निर्धारित शुल्क के अतिरिक्त ₹600.00 अलग से देय होगा।
                         </p>
                     </div>
 
@@ -419,10 +449,6 @@
                 </div>
             </div>
 
-        </div>
-
-    </div>
-</div>
 
 <!-- FOOTER -->
 <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-900 mt-auto">
